@@ -7,15 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 import java.util.ArrayList;
+
 public class Connect {
 
+    //private static String connect_Path = "jdbc:sqlite:C:\\Users\\Jaroslaw\\IBM\\rationalsdp\\workspace\\BD2_20Z_Rekrutacja\\app\\src\\com\\company\\test.db";
+    private static String connect_Path = "jdbc:sqlite:app/src/com/company/test.db";
 
     public static String connect(String query) {
         Connection conn = null;
         String text = "";
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -32,6 +36,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -49,7 +54,7 @@ public class Connect {
         int index = 0;
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -64,6 +69,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -81,7 +87,7 @@ public class Connect {
         List<String> faculties = new ArrayList<String>();
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -97,6 +103,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -114,7 +121,7 @@ public class Connect {
         List<String> majors = new ArrayList<String>();
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -130,6 +137,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -147,7 +155,7 @@ public class Connect {
         List<String> countries = new ArrayList<String>();
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -162,6 +170,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -179,7 +188,7 @@ public class Connect {
         int sum = 0;
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -193,6 +202,7 @@ public class Connect {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
@@ -214,7 +224,8 @@ public class Connect {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:src/com/company/test.db";
+            Class.forName("org.sqlite.JDBC");
+            String url = connect_Path;
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -223,8 +234,9 @@ public class Connect {
             Statement stmt  = conn.createStatement();
             ResultSet rs    = stmt.executeQuery(query);
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
+            System.out.println("not connected");
         } finally {
             try {
                 if (conn != null) {
