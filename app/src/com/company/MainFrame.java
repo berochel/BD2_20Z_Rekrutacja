@@ -1,7 +1,6 @@
 package com.company;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,11 +64,26 @@ public class MainFrame extends JFrame{
                     loggedStudentLabel.setText(imie + " " + nazwisko);
                 } else {
                     JOptionPane.showMessageDialog(rekrutacja, "Logowanie nie powiodło się.");
-                    loggedStudentLabel.setText("Nie zalogowan0");
+                    loggedStudentLabel.setText("Nie zalogowano");
                 }
                 imieTextField.setText("Imię");
                 nazwiskoTextField.setText("Nazwisko");
                 hasloTextField.setText("Hasło");
+            }
+        });
+        zarządzajSystememButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(loggedStudentLabel.getText() == "Nie zalogowano"){
+                    JFrame adminManageLogin = new AdminManageFormLogin("Przeglądaj kierunki");
+                    setVisible(false);
+                    adminManageLogin.setVisible(true);
+                    dispose();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rekrutacja, "Nie posiadasz jako użytkownik takich uprawnień.");
+                }
             }
         });
     }
