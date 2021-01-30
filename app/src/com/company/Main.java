@@ -6,7 +6,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        JFrame frame = new MainFrame("Rekrutacja BD2");
+        JFrame frame = new MainFrame("Rekrutacja BD2", 0);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
 

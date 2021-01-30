@@ -38,7 +38,7 @@ public class AdminManageFrame extends JFrame {
         powrótDoMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new MainFrame("Rekrutacja BD2");
+                JFrame frame = new MainFrame("Rekrutacja BD2", 0);
                 setVisible(false);
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);

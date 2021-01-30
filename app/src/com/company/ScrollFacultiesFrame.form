@@ -7,7 +7,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="27dc6" binding="faculties" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="27dc6" binding="faculties" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints/>
         <properties/>
@@ -61,6 +61,22 @@
             </constraints>
             <properties>
               <text value="Zarządzaj swoimi preferencjami"/>
+            </properties>
+          </component>
+          <component id="9684c" class="javax.swing.JButton" binding="ustawPreferencjeButton" default-binding="true">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Ustaw preferencje"/>
+            </properties>
+          </component>
+          <component id="1f561" class="javax.swing.JSpinner" binding="preferencjaSpinner">
+            <constraints>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <doubleBuffered value="false"/>
             </properties>
           </component>
         </children>
