@@ -1,5 +1,3 @@
-
-
 CREATE TABLE adres (
     id_adresu      NUMBER(7) NOT NULL,
     id_miasta      NUMBER(5) NOT NULL,
@@ -17,8 +15,18 @@ CREATE TABLE aplikacja (
     data_zlozenia  DATE NOT NULL,
     czy_oplacona   CHAR(1),
     id_kandydata   NUMBER(7) NOT NULL,
+    wybor1	   NUMBER(5),
+    wybor2	   NUMBER(5),
+    wybor3	   NUMBER(5),
+    wybor4	   NUMBER(5),
+    wybor5	   NUMBER(5),
     PRIMARY KEY ( id_aplikacji ),
-    FOREIGN KEY ( id_kandydata ) REFERENCES kandydat ( id_kandydata )
+    FOREIGN KEY ( id_kandydata ) REFERENCES kandydat ( id_kandydata ),
+    FOREIGN KEY ( wybor1 ) REFERENCES kierunek_studiow ( id_kierunku ),
+    FOREIGN KEY ( wybor2 ) REFERENCES kierunek_studiow ( id_kierunku ),
+    FOREIGN KEY ( wybor3 ) REFERENCES kierunek_studiow ( id_kierunku ),
+    FOREIGN KEY ( wybor4 ) REFERENCES kierunek_studiow ( id_kierunku ),
+    FOREIGN KEY ( wybor5 ) REFERENCES kierunek_studiow ( id_kierunku )
 );
 
 
@@ -109,28 +117,6 @@ CREATE TABLE lista_laureatow (
     FOREIGN KEY ( id_konkursu ) REFERENCES konkurs ( id_konkursu )
 );
 
-
-
-CREATE TABLE lista_wyborow (
-    id_kierunku   NUMBER(5) NOT NULL,
-    id_aplikacji  NUMBER(5) NOT NULL,
-    priorytet     NUMBER(3) NOT NULL,
-    PRIMARY KEY ( id_kierunku, id_aplikacji ),
-    FOREIGN KEY ( id_aplikacji ) REFERENCES aplikacja ( id_aplikacji ),
-    FOREIGN KEY ( id_kierunku ) REFERENCES kierunek_studiow ( id_kierunku )
-);
-
-
-
-CREATE TABLE lista_wydzialow (
-    id_wydzialu    NUMBER(5) NOT NULL,
-    id_rekrutacji  NUMBER(5) NOT NULL,
-    PRIMARY KEY ( id_wydzialu, id_rekrutacji ),
-    FOREIGN KEY ( id_rekrutacji ) REFERENCES rekrutacja ( id_rekrutacji ),
-    FOREIGN KEY ( id_wydzialu ) REFERENCES wydzial ( id_wydzialu )
-);
-
-
 CREATE TABLE miasto (
     id_miasta  NUMBER(5) NOT NULL,
     nazwa      VARCHAR2(20) NOT NULL,
@@ -191,7 +177,9 @@ CREATE TABLE tura (
     nr_tury    NUMBER(3) NOT NULL,
     data_zak   DATE,
     data_rozp  DATE,
-    PRIMARY KEY ( id_tury )
+    id_rekrutacji NUMBER (5) NOT NULL,
+    PRIMARY KEY ( id_tury ),
+    FOREIGN KEY ( id_rekrutacji ) REFERENCES rekrutacja ( id_rekrutacji )
 );
 
 
@@ -212,6 +200,3 @@ CREATE TABLE wynik_z_przedmiotu (
     FOREIGN KEY ( id_kandydata ) REFERENCES kandydat ( id_kandydata ),
     FOREIGN KEY ( id_przedmiotu ) REFERENCES przedmiot ( id_przedmiotu )
 );
-
-
-
