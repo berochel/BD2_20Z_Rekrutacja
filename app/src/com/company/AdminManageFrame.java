@@ -57,30 +57,33 @@ public class AdminManageFrame extends JFrame {
                 if(tempIndexEnd != -1 && tempIndexBeginning != -1) {
                     temp = temp.substring(tempIndexBeginning+1, tempIndexEnd);
                 }
-                wydzialLabel.setText(temp);
+                String query = "SELECT * from rekrutacja WHERE id_rekrutacji = '"+temp+"'";
 
-                /*String query = "SELECT id_wydzialu FROM lista_wydzialow WHERE id_rekrutacji = "+temp+";";
-                int index = Connect.connect_query_int(query, "id_wydzialu");
+                List<Map<String, Object>> rekrutacja_set;
+                rekrutacja_set = Connect.connect(query);
+                for (Map<String, Object> map : rekrutacja_set) {
+                    //column labels are case sensitive
+                    dataRozpLabel.setText(String.valueOf(map.get("data_rozp")));
+                    dataZakLabel.setText(String.valueOf(map.get("data_zak")));
+                }
 
-                query = "SELECT Nazwa FROM Wydzial WHERE id_wydzialu = "+index+";";
-                String text = Connect.connect_query_string(query, "Nazwa");
-                wydzialLabel.setText(text);*/
-                String query = "SELECT * from tura WHERE id_rekrutacji = '"+temp+"'";
 
-                List<Map<String, Object>> tura_set = new ArrayList<Map<String, Object>>();
+                query = "SELECT * from tura WHERE id_rekrutacji = '"+temp+"'";
+
+                List<Map<String, Object>> tura_set;
                 tura_set = Connect.connect(query);
-                for (Map<String, Object> map : tura_set) {
+                /*for (Map<String, Object> map : tura_set) {
                     for (Map.Entry<String, Object> entry : map.entrySet()) {
                         System.out.println(entry.getKey() + " - " + entry.getValue());
                     }
-                }
-                List<String> tura_query  = new ArrayList<String>();
+                }*/
+                List<String> tura_query  = new ArrayList<>();
                 for (Map<String, Object> map : tura_set) {
 
                     tura_query.add("Tura nr. "+map.get("id_tury"));
                 }
 
-                turaComboBox.setModel(new DefaultComboBoxModel<String>(tura_query.toArray(new String[0])));
+                turaComboBox.setModel(new DefaultComboBoxModel<>(tura_query.toArray(new String[0])));
             }
         });
     }

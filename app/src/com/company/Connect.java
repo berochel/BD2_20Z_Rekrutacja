@@ -29,7 +29,11 @@ public class Connect {
             ResultSet resultSet = statement.executeQuery(query);
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
-            /*while (resultSet.next()) {
+
+            //uncomment for verbose checking whether or not the statement works.
+
+            /*
+            while (resultSet.next()) {
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) System.out.print(",  ");
                     String columnValue = resultSet.getString(i);
@@ -37,7 +41,11 @@ public class Connect {
                 }
                 System.out.println("");
             }
-            resultSet.first();*/
+
+            statement  = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+            rsmd = resultSet.getMetaData();*/
+
             while (resultSet.next()) {
                 row = new HashMap<String, Object>();
                 for (int i = 1; i <= columnsNumber; i++) {
@@ -45,10 +53,6 @@ public class Connect {
                 }
                 resultList.add(row);
             }
-            /*
-            while (rs.next()) {
-                text += (rs.getInt("Id_miasta") + " " + rs.getString("Nazwa") + "\n");
-            } */
 
 
         } catch (SQLException e) {
