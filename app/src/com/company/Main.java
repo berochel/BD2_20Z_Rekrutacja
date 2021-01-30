@@ -8,6 +8,7 @@ public class Main
     {
         JFrame frame = new MainFrame("Rekrutacja BD2");
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
 
     }
 }

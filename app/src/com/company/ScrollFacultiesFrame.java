@@ -42,6 +42,7 @@ public class ScrollFacultiesFrame extends JFrame{
                 JFrame frame = new MainFrame("Rekrutacja BD2");
                 setVisible(false);
                 frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
                 dispose();
             }
         });

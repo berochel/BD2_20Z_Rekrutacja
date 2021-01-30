@@ -32,6 +32,7 @@ public class MainFrame extends JFrame{
                 JFrame createApplicatonFrame = new NewApplicationFrame("Nowa aplikacja");
                 setVisible(false);
                 createApplicatonFrame.setVisible(true);
+                createApplicatonFrame.setLocationRelativeTo(null);
                 dispose();
             }
         });
@@ -42,6 +43,7 @@ public class MainFrame extends JFrame{
                     JFrame scrollFaculties = new ScrollFacultiesFrame("Przeglądaj kierunki");
                     setVisible(false);
                     scrollFaculties.setVisible(true);
+                    scrollFaculties.setLocationRelativeTo(null);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(rekrutacja, "Aby uzyskać dostęp musisz być zalogowany.");
@@ -57,8 +59,8 @@ public class MainFrame extends JFrame{
                 String password = hasloTextField.getText().strip();
                 String query = "SELECT id_kandydata FROM kandydat WHERE imie = '" + imie + "' AND nazwisko = '"
                         + nazwisko + "' AND haslo = '" + password + "'" ;
-                int index = Connect.connect_query(query, "id_kandydata");
-                int sum = Connect.connect_query("SELECT count(*) as sum FROM kandydat", "sum");
+                int index = Connect.connect_query_int(query, "id_kandydata");
+                int sum = Connect.connect_query_int("SELECT count(*) as sum FROM kandydat", "sum");
                 if(index != 0 && sum > 0){
                     JOptionPane.showMessageDialog(rekrutacja, "Logowanie przebiegło pomyślnie.");
                     loggedStudentLabel.setText(imie + " " + nazwisko);
@@ -75,9 +77,10 @@ public class MainFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(loggedStudentLabel.getText() == "Nie zalogowano"){
-                    JFrame adminManageLogin = new AdminManageFormLogin("Przeglądaj kierunki");
+                    JFrame adminManageLoginFrame = new AdminManageFormLogin("Przeglądaj kierunki");
                     setVisible(false);
-                    adminManageLogin.setVisible(true);
+                    adminManageLoginFrame.setVisible(true);
+                    adminManageLoginFrame.setLocationRelativeTo(null);
                     dispose();
                 }
                 else

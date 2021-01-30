@@ -3,8 +3,6 @@ package com.company;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class NewApplicationFrame extends JFrame{
@@ -75,13 +73,13 @@ public class NewApplicationFrame extends JFrame{
         } else {
             query += " AND nr_mieszkania is null";
         }
-        id = Connect.connect_query(query, "id");
+        id = Connect.connect_query_int(query, "id");
         if(id != 0){
             System.out.print("Address found");
             return id;
         } else {
             System.out.print("Address not found");
-            id = Connect.connect_query("SELECT COUNT(*) as id FROM adres", "id");
+            id = Connect.connect_query_int("SELECT COUNT(*) as id FROM adres", "id");
             id++;
             query = "INSERT INTO adres VALUES (" + id + "," + miasto + ",'" + kod_pocztowy + "','" + ulica + "'," + numer_domu;
             if(numer_mieszkania != 0){
@@ -96,19 +94,19 @@ public class NewApplicationFrame extends JFrame{
     private int addMiasto(String miasto, String kraj){
         int id = 0;
         String query = "SELECT id_miasta as id FROM miasto, kraj WHERE miasto.nazwa = '" + miasto + "' AND kraj.nazwa = '" + kraj + "'";
-        id = Connect.connect_query(query, "id");
+        id = Connect.connect_query_int(query, "id");
         if(id != 0){
             System.out.print("City found.");
             return id;
         } else {
             System.out.print("City not found.");
-            int id_kraju = Connect.connect_query("SELECT id_kraju as id FROM kraj WHERE nazwa = '" + kraj + "'", "id");
-            int id_miasta = Connect.connect_query("SELECT COUNT(*) as sum FROM miasto", "sum");
+            int id_kraju = Connect.connect_query_int("SELECT id_kraju as id FROM kraj WHERE nazwa = '" + kraj + "'", "id");
+            int id_miasta = Connect.connect_query_int("SELECT COUNT(*) as sum FROM miasto", "sum");
             id_miasta++;
             query = "INSERT INTO miasto VALUES (" + id_miasta + ",'" + miasto + "'," + id_kraju +")";
             Connect.insert(query);
             query = "SELECT id_miasta as id FROM miasto, kraj WHERE miasto.nazwa = '" + miasto + "' AND kraj.nazwa = '" + kraj + "'";
-            id = Connect.connect_query(query, "id");
+            id = Connect.connect_query_int(query, "id");
             return id;
         }
     }
@@ -117,8 +115,8 @@ public class NewApplicationFrame extends JFrame{
         int index = 0;
         String query  = "SELECT id_kandydata FROM kandydat WHERE imie = '" + imie + "' AND nazwisko = '"  + nazwisko
                 + "' AND pesel = '" + pesel + "' AND data_urodzenia = '" + data_urodzenia + "'";
-        index = Connect.connect_query(query, "id_kandydata");
-        int sum = Connect.connect_query("SELECT count(*) as sum FROM kandydat", "sum");
+        index = Connect.connect_query_int(query, "id_kandydata");
+        int sum = Connect.connect_query_int("SELECT count(*) as sum FROM kandydat", "sum");
         if(index != 0 && sum > 0){
             System.out.print("Person found");
             return index;
@@ -136,8 +134,8 @@ public class NewApplicationFrame extends JFrame{
         int index = 0;
 
         String query  = "SELECT id_aplikacji FROM aplikacja WHERE id_kandydata = "  + id_kandydata;
-        index = Connect.connect_query(query, "id_aplikacji");
-        int sum = Connect.connect_query("SELECT count(*) as sum FROM aplikacja", "sum");
+        index = Connect.connect_query_int(query, "id_aplikacji");
+        int sum = Connect.connect_query_int("SELECT count(*) as sum FROM aplikacja", "sum");
         if(index != 0 && sum > 0){
             JOptionPane.showMessageDialog(this, "Your application was already submitted.");
         } else {

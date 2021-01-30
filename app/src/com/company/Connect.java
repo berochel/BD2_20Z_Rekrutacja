@@ -1,21 +1,21 @@
 package com.company;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Connect {
 
     //private static String connect_Path = "jdbc:sqlite:C:\\Users\\Jaroslaw\\IBM\\rationalsdp\\workspace\\BD2_20Z_Rekrutacja\\app\\src\\com\\company\\test.db";
     private static String connect_Path = "jdbc:sqlite:app/src/com/company/test.db";
 
-    public static String connect(String query) {
+    public static List<Map<String, Object>> connect(String query) {
         Connection conn = null;
-        String text = "";
+        List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
+        Map<String, Object> row = null;
+
         try {
             // db parameters
 
@@ -25,9 +25,26 @@ public class Connect {
 
             System.out.println("Connection to SQLite has been established.");
 
-            Statement stmt  = conn.createStatement();
-            ResultSet rs    = stmt.executeQuery(query);
-
+            Statement statement  = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            ResultSetMetaData rsmd = resultSet.getMetaData();
+            int columnsNumber = rsmd.getColumnCount();
+            /*while (resultSet.next()) {
+                for (int i = 1; i <= columnsNumber; i++) {
+                    if (i > 1) System.out.print(",  ");
+                    String columnValue = resultSet.getString(i);
+                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+                }
+                System.out.println("");
+            }
+            resultSet.first();*/
+            while (resultSet.next()) {
+                row = new HashMap<String, Object>();
+                for (int i = 1; i <= columnsNumber; i++) {
+                    row.put(rsmd.getColumnName(i), resultSet.getObject(i));
+                }
+                resultList.add(row);
+            }
             /*
             while (rs.next()) {
                 text += (rs.getInt("Id_miasta") + " " + rs.getString("Nazwa") + "\n");
@@ -46,10 +63,10 @@ public class Connect {
                 System.out.println(ex.getMessage());
             }
         }
-        return text;
+        return resultList;
     }
 
-    public static int connect_query(String query, String column) {
+    public static int connect_query_int(String query, String column) {
         Connection conn = null;
         int index = 0;
         try {
@@ -81,7 +98,38 @@ public class Connect {
         }
         return index;
     }
+    public static String connect_query_string(String query, String column) {
+        Connection conn = null;
+        String index = "";
+        try {
+            // db parameters
+            String url = connect_Path;
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
 
+            System.out.println("Connection to SQLite has been established.");
+
+            Statement stmt  = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while(rs.next()){
+                index = rs.getString(column);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("not connected");
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return index;
+    }
     public static List<String> select_faculties(){
         Connection conn = null;
         List<String> faculties = new ArrayList<String>();
@@ -182,7 +230,38 @@ public class Connect {
         }
         return countries;
     }
+    public static List<String> select_rekrutacja(){
+        Connection conn = null;
+        List<String> rekrutacje = new ArrayList<String>();
+        try {
+            // db parameters
+            String url = connect_Path;
+            // create a connection to the database
+            conn = DriverManager.getConnection(url);
 
+            System.out.println("Connection to SQLite has been established.");
+
+            Statement stmt  = conn.createStatement();
+            ResultSet rs    = stmt.executeQuery("SELECT id_rekrutacji FROM rekrutacja");
+            while (rs.next()) {
+                rekrutacje.add("Rekrutacja "+rs.getString("id_rekrutacji")+".");
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("not connected");
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return rekrutacje;
+    }
     public static int count_table(String table_name){
         Connection conn = null;
         int sum = 0;
@@ -388,6 +467,4 @@ public class Connect {
         //
         return str;
     }
-
-
 }

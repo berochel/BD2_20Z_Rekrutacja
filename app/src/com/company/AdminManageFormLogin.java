@@ -25,13 +25,14 @@ public class AdminManageFormLogin extends JFrame {
                 String password = hasloTextField.getText().strip();
                 String query = "SELECT id_pracownika FROM pracownik WHERE imie = '" + imie + "' AND nazwisko = '"
                         + nazwisko + "' AND haslo = '" + password + "'" ;
-                int index = Connect.connect_query(query, "id_pracownika");
-                int sum = Connect.connect_query("SELECT count(*) as sum FROM pracownik", "sum");
+                int index = Connect.connect_query_int(query, "id_pracownika");
+                int sum = Connect.connect_query_int("SELECT count(*) as sum FROM pracownik", "sum");
                 if(index != 0 && sum > 0){
                     JOptionPane.showMessageDialog(adminLogin, "Logowanie przebiegło pomyślnie.");
                     JFrame frame = new AdminManageFrame("Rekrutacja BD2 - Panel Administratora");
                     setVisible(false);
                     frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(adminLogin, "Logowanie nie powiodło się.");
