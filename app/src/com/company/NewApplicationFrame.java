@@ -56,7 +56,7 @@ public class NewApplicationFrame extends JFrame{
         powrótDoMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JFrame frame = new MainFrame("Rekrutacja BD2");
+                JFrame frame = new MainFrame("Rekrutacja BD2", 0);
                 setVisible(false);
                 frame.setVisible(true);
                 dispose();

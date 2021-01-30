@@ -17,10 +17,18 @@ public class MainFrame extends JFrame{
     private JTextField queryTextField;
     private JButton runButton;
     private JTextArea query_result;
+    private int logged_id;
 
-    public MainFrame(String title){
+    public MainFrame(String title, int id){
         super(title);
-
+        logged_id = id;
+        if (id != 0){
+            String query = "SELECT imie FROM kandydat WHERE id_kandydata = " + logged_id ;
+            String imie = Connect.connect_query_string(query, "imie");
+            query = "SELECT nazwisko FROM kandydat WHERE id_kandydata = " + logged_id ;
+            String nazwisko = Connect.connect_query_string(query, "nazwisko");
+            loggedStudentLabel.setText(imie + " " + nazwisko);
+        }
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(rekrutacja);
         this.pack();
@@ -39,8 +47,8 @@ public class MainFrame extends JFrame{
         przeglądajButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if(loggedStudentLabel.getText() != "Nie zalogowano"){
-                    JFrame scrollFaculties = new ScrollFacultiesFrame("Przeglądaj kierunki");
+                if(logged_id != 0){
+                    JFrame scrollFaculties = new ScrollFacultiesFrame("Przeglądaj kierunki", logged_id);
                     setVisible(false);
                     scrollFaculties.setVisible(true);
                     scrollFaculties.setLocationRelativeTo(null);
@@ -64,9 +72,11 @@ public class MainFrame extends JFrame{
                 if(index != 0 && sum > 0){
                     JOptionPane.showMessageDialog(rekrutacja, "Logowanie przebiegło pomyślnie.");
                     loggedStudentLabel.setText(imie + " " + nazwisko);
+                    logged_id = index;
                 } else {
                     JOptionPane.showMessageDialog(rekrutacja, "Logowanie nie powiodło się.");
                     loggedStudentLabel.setText("Nie zalogowano");
+                    logged_id = 0;
                 }
                 imieTextField.setText("Imię");
                 nazwiskoTextField.setText("Nazwisko");
