@@ -19,7 +19,13 @@ public class AdminManageFrame extends JFrame {
     private JComboBox turaComboBox;
     private JLabel dataRozpLabel;
     private JLabel dataZakLabel;
+    private JLabel kandydaciLabel;
+    private JLabel glownaLabel;
+    private JLabel rezerwowaLabel;
+    private JComboBox kierunkiComboBox;
     List<String> rekrutacja_query;
+    List<String> tura_query  = new ArrayList<>();
+    List<Map<String, Object>> tura_set;
 
     public AdminManageFrame(String str) {
         super(str);
@@ -70,20 +76,85 @@ public class AdminManageFrame extends JFrame {
 
                 query = "SELECT * from tura WHERE id_rekrutacji = '"+temp+"'";
 
-                List<Map<String, Object>> tura_set;
+
                 tura_set = Connect.connect(query);
+                //uncomment to print whole list of maps containing result set of query.
                 /*for (Map<String, Object> map : tura_set) {
                     for (Map.Entry<String, Object> entry : map.entrySet()) {
                         System.out.println(entry.getKey() + " - " + entry.getValue());
                     }
                 }*/
-                List<String> tura_query  = new ArrayList<>();
+                tura_query.clear();
                 for (Map<String, Object> map : tura_set) {
 
-                    tura_query.add("Tura nr. "+map.get("id_tury"));
+                    tura_query.add("Tura nr."+map.get("id_tury"));
+                }
+                turaComboBox.setModel(new DefaultComboBoxModel<>(tura_query.toArray(new String[0])));
+            }
+        });
+        turaComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int number = turaComboBox.getSelectedIndex();
+                String temp = tura_query.get(number);
+                int tempIndexBeginning = temp.indexOf(".");
+                if(tempIndexBeginning != -1) {
+                    temp = temp.substring(tempIndexBeginning+1);
+                }
+                String query = "";
+
+                List<Map<String, Object>> tempList;
+
+                query = "SELECT * from lista WHERE id_tury = '"+temp+"'";
+                tempList = Connect.connect(query);
+
+                if(tempList.size() == 0)
+                {
+                    kandydaciLabel.setText(String.valueOf(0));
+                    glownaLabel.setText(String.valueOf(0));
+                    rezerwowaLabel.setText(String.valueOf(0));
                 }
 
-                turaComboBox.setModel(new DefaultComboBoxModel<>(tura_query.toArray(new String[0])));
+                int glownaCount = 0, rezerwowaCount = 0;
+
+                List<Map<String, Object>> kandydaci_set = new ArrayList<>();
+                List<Map<String, Object>> tempList2;
+
+                for (Map<String, Object> map : tempList) {
+                    query = "SELECT * from lista_kandydat WHERE id_listy = '"+map.get("id_listy")+"'";
+                    tempList2 = Connect.connect(query);
+
+                    String tempString = String.valueOf(map.get("rezerwowa"));
+
+                    if(tempString.equals("N"))
+                        glownaCount = tempList2.size();
+                    else
+                        rezerwowaCount = tempList2.size();
+
+                    kandydaci_set.addAll(tempList2);
+
+                }
+                kandydaciLabel.setText(String.valueOf(kandydaci_set.size()));
+                glownaLabel.setText(String.valueOf(glownaCount));
+                rezerwowaLabel.setText(String.valueOf(rezerwowaCount));
+
+                query = "SELECT kierunek_studiow.nazwa, realizacja.kod from kierunek_studiow, realizacja WHERE kierunek_studiow.id_kierunku = realizacja.id_kierunku AND realizacja.id_kierunku IN (SELECT id_kierunku from realizacja WHERE kod IN (SELECT kod_realizacji from lista WHERE id_tury = '"+temp+"'))";
+                tempList = Connect.connect(query);
+
+                for (Map<String, Object> map : tempList) {
+                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                        System.out.println(entry.getKey() + " - " + entry.getValue());
+                    }
+                }
+
+                List<String> kierunek_query  = new ArrayList<>();
+                for (Map<String, Object> map : tempList) {
+
+                    kierunek_query.add("Kierunek-"+map.get("kod")+", "+map.get("nazwa"));
+                }
+
+                kierunkiComboBox.setModel(new DefaultComboBoxModel<>(kierunek_query.toArray(new String[0])));
             }
         });
     }
