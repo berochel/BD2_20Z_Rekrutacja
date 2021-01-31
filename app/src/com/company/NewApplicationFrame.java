@@ -137,12 +137,12 @@ public class NewApplicationFrame extends JFrame{
         index = Connect.connect_query_int(query, "id_aplikacji");
         int sum = Connect.connect_query_int("SELECT count(*) as sum FROM aplikacja", "sum");
         if(index != 0 && sum > 0){
-            JOptionPane.showMessageDialog(this, "Your application was already submitted.");
+            JOptionPane.showMessageDialog(this, "Twoja aplikacja nie została utworzona.");
         } else {
             index = sum + 1;
-            query = "INSERT INTO aplikacja VALUES(" + index + ",(SELECT date('now')),'N'," + id_kandydata  + ")";
+            query = "INSERT INTO aplikacja VALUES(" + index + ",(SELECT date('now')),'N'," + id_kandydata  + ",null,null,null,null,null)";
             Connect.insert(query);
-            JOptionPane.showMessageDialog(this, "Your application was successfully submitted.");
+            JOptionPane.showMessageDialog(this, "Twoja aplikacja została utworzona.\nTeraz możesz przeglądać kierunki.");
         }
     }
 }

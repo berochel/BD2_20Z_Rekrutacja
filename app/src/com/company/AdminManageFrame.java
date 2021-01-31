@@ -93,7 +93,7 @@ public class AdminManageFrame extends JFrame {
                 tura_query.clear();
                 for (Map<String, Object> map : tura_set) {
 
-                    tura_query.add("Tura nr."+map.get("id_tury"));
+                    tura_query.add("Tura nr."+map.get("nr_tury"));
                 }
                 turaComboBox.setModel(new DefaultComboBoxModel<>(tura_query.toArray(new String[0])));
             }

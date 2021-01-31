@@ -1,271 +1,286 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.company.AdminManageFrame">
-  <grid id="27dc6" binding="adminForm" layout-manager="GridLayoutManager" row-count="35" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <scrollpane id="a8b6e">
     <constraints>
-      <xy x="20" y="20" width="500" height="844"/>
+      <xy x="20" y="20" width="732" height="686"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="5d517" class="javax.swing.JButton" binding="powrótDoMenuButton" default-binding="true">
-        <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
+      <grid id="27dc6" binding="adminForm" layout-manager="GridLayoutManager" row-count="36" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints/>
         <properties>
-          <text value="Powrót do menu"/>
+          <minimumSize width="600" height="600"/>
+          <preferredSize width="600" height="600"/>
         </properties>
-      </component>
-      <component id="1323a" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="2" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="5c7cb" class="javax.swing.JLabel" binding="wydzialLabel">
-        <constraints>
-          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="baf47" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Data rozpoczęcia rekrutacji:"/>
-        </properties>
-      </component>
-      <component id="d8d6e" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Data zakończenia rekrutacji:"/>
-        </properties>
-      </component>
-      <component id="c507c" class="javax.swing.JLabel" binding="dataRozpLabel">
-        <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="21318" class="javax.swing.JLabel" binding="dataZakLabel">
-        <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="d3c4c" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="6" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="30f7b" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Wybierz rekrutację:"/>
-        </properties>
-      </component>
-      <component id="e630c" class="javax.swing.JComboBox" binding="rekrutacjaComboBox">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="619" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Wybierz turę danej rekrutacji:"/>
-        </properties>
-      </component>
-      <component id="3ceef" class="javax.swing.JComboBox" binding="turaComboBox">
-        <constraints>
-          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="5f1ce" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="13" column="0" row-span="9" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="18f96" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="26" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba kandydatów w listach głównych:"/>
-        </properties>
-      </component>
-      <component id="4c345" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="27" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba kandydatów w listach rezerwowych"/>
-        </properties>
-      </component>
-      <component id="4ee13" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="25" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba wszystkich kandydatów:"/>
-        </properties>
-      </component>
-      <component id="6ba29" class="javax.swing.JLabel" binding="kandydaciLabel">
-        <constraints>
-          <grid row="25" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="5e822" class="javax.swing.JLabel" binding="glownaLabel">
-        <constraints>
-          <grid row="26" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="5ebfd" class="javax.swing.JLabel" binding="rezerwowaLabel">
-        <constraints>
-          <grid row="27" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="c135c" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="22" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Statystyki tury:"/>
-        </properties>
-      </component>
-      <component id="9716e" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Panel administratora - zarządzanie rekrutacjami"/>
-        </properties>
-      </component>
-      <component id="5a928" class="javax.swing.JComboBox" binding="kierunkiComboBox">
-        <constraints>
-          <grid row="31" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="a0f7b" class="javax.swing.JSeparator">
-        <constraints>
-          <grid row="28" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
-      <component id="5d03d" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="31" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Wybierz kierunek z danej tury:"/>
-        </properties>
-      </component>
-      <component id="f5592" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="23" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Data rozpoczęcia:"/>
-        </properties>
-      </component>
-      <component id="f19e0" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="24" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Data zakończenia"/>
-        </properties>
-      </component>
-      <component id="f9733" class="javax.swing.JLabel" binding="turaRozpLabel">
-        <constraints>
-          <grid row="23" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="495d2" class="javax.swing.JLabel" binding="turaZakLabel">
-        <constraints>
-          <grid row="24" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="ebb59" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="32" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba kandydatów na kierunku"/>
-        </properties>
-      </component>
-      <component id="2a189" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="33" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba kandydatów w liście głównej:"/>
-        </properties>
-      </component>
-      <component id="29448" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="34" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Liczba kandydatów w liście rezerwowej:"/>
-        </properties>
-      </component>
-      <component id="64d91" class="javax.swing.JLabel" binding="kierunekAllLabel">
-        <constraints>
-          <grid row="32" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="3eb2b" class="javax.swing.JLabel" binding="kierunekGlownaLabel">
-        <constraints>
-          <grid row="33" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
-      <component id="162c4" class="javax.swing.JLabel" binding="kierunekRezerwowaLabel">
-        <constraints>
-          <grid row="34" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
+        <border type="none"/>
+        <children>
+          <component id="5d517" class="javax.swing.JButton" binding="powrótDoMenuButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Powrót do menu"/>
+            </properties>
+          </component>
+          <component id="1323a" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="2" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="5c7cb" class="javax.swing.JLabel" binding="wydzialLabel">
+            <constraints>
+              <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="4" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="baf47" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Data rozpoczęcia rekrutacji:"/>
+            </properties>
+          </component>
+          <component id="d8d6e" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="10" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Data zakończenia rekrutacji:"/>
+            </properties>
+          </component>
+          <component id="c507c" class="javax.swing.JLabel" binding="dataRozpLabel">
+            <constraints>
+              <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="21318" class="javax.swing.JLabel" binding="dataZakLabel">
+            <constraints>
+              <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="d3c4c" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="6" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="30f7b" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Wybierz rekrutację:"/>
+            </properties>
+          </component>
+          <component id="e630c" class="javax.swing.JComboBox" binding="rekrutacjaComboBox">
+            <constraints>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="619" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="12" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Wybierz turę danej rekrutacji:"/>
+            </properties>
+          </component>
+          <component id="3ceef" class="javax.swing.JComboBox" binding="turaComboBox">
+            <constraints>
+              <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="5f1ce" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="13" column="0" row-span="9" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="18f96" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="26" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba kandydatów w listach głównych:"/>
+            </properties>
+          </component>
+          <component id="4c345" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="27" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba kandydatów w listach rezerwowych"/>
+            </properties>
+          </component>
+          <component id="4ee13" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="25" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba wszystkich kandydatów:"/>
+            </properties>
+          </component>
+          <component id="6ba29" class="javax.swing.JLabel" binding="kandydaciLabel">
+            <constraints>
+              <grid row="25" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="5e822" class="javax.swing.JLabel" binding="glownaLabel">
+            <constraints>
+              <grid row="26" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="5ebfd" class="javax.swing.JLabel" binding="rezerwowaLabel">
+            <constraints>
+              <grid row="27" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="c135c" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="22" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Statystyki tury:"/>
+            </properties>
+          </component>
+          <component id="9716e" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Panel administratora - zarządzanie rekrutacjami"/>
+            </properties>
+          </component>
+          <component id="5a928" class="javax.swing.JComboBox" binding="kierunkiComboBox">
+            <constraints>
+              <grid row="31" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="a0f7b" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="28" column="0" row-span="3" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="5d03d" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="31" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Wybierz kierunek z danej tury:"/>
+            </properties>
+          </component>
+          <component id="f5592" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="23" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Data rozpoczęcia:"/>
+            </properties>
+          </component>
+          <component id="f19e0" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="24" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Data zakończenia"/>
+            </properties>
+          </component>
+          <component id="f9733" class="javax.swing.JLabel" binding="turaRozpLabel">
+            <constraints>
+              <grid row="23" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="495d2" class="javax.swing.JLabel" binding="turaZakLabel">
+            <constraints>
+              <grid row="24" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="ebb59" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="32" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba kandydatów na kierunku"/>
+            </properties>
+          </component>
+          <component id="2a189" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="33" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba kandydatów w liście głównej:"/>
+            </properties>
+          </component>
+          <component id="29448" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="34" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Liczba kandydatów w liście rezerwowej:"/>
+            </properties>
+          </component>
+          <component id="64d91" class="javax.swing.JLabel" binding="kierunekAllLabel">
+            <constraints>
+              <grid row="32" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="3eb2b" class="javax.swing.JLabel" binding="kierunekGlownaLabel">
+            <constraints>
+              <grid row="33" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="162c4" class="javax.swing.JLabel" binding="kierunekRezerwowaLabel">
+            <constraints>
+              <grid row="34" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <vspacer id="1ca1b">
+            <constraints>
+              <grid row="35" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </vspacer>
+        </children>
+      </grid>
     </children>
-  </grid>
+  </scrollpane>
 </form>
