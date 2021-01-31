@@ -1,6 +1,8 @@
 package com.company;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +19,13 @@ public class AdminManageFrame extends JFrame {
     private JLabel glownaLabel;
     private JLabel rezerwowaLabel;
     private JComboBox kierunkiComboBox;
-    private JLabel turaRozpLabel;
-    private JLabel turaZakLabel;
+    private JTextField turaRozpLabel;
+    private JTextField turaZakLabel;
     private JLabel kierunekAllLabel;
     private JLabel kierunekGlownaLabel;
     private JLabel kierunekRezerwowaLabel;
     private JButton zgloszeniaButton;
+    private JButton zmianaButton;
     List<String> rekrutacja_query;
     List<String> tura_query  = new ArrayList<>();
     List<String> kierunek_query  = new ArrayList<>();
@@ -33,10 +36,6 @@ public class AdminManageFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(adminForm);
         this.pack();
-
-        //String query = "SELECT id_pracownika FROM pracownik WHERE imie = 'Rafał'; ";
-        // index = Connect.connect_query_int(query, "id_pracownika");
-        //int sum = Connect.connect_query("SELECT count(*) as sum FROM kandydat", "sum");
 
         rekrutacja_query = Connect.select_rekrutacja();
         rekrutacjaComboBox.setModel(new DefaultComboBoxModel<>(rekrutacja_query.toArray(new String[0])));
@@ -145,12 +144,6 @@ public class AdminManageFrame extends JFrame {
             query = "SELECT kierunek_studiow.nazwa, realizacja.kod from kierunek_studiow, realizacja WHERE kierunek_studiow.id_kierunku = realizacja.id_kierunku AND realizacja.id_kierunku IN (SELECT id_kierunku from realizacja WHERE kod IN (SELECT kod_realizacji from lista WHERE id_tury = '"+temp+"'))";
             tempList = Connect.connect(query);
 
-            /*for (Map<String, Object> map : tempList) {
-                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                    System.out.println(entry.getKey() + " - " + entry.getValue());
-                }
-            }*/
-
             kierunek_query.clear();
             for (Map<String, Object> map : tempList) {
 
@@ -191,12 +184,34 @@ public class AdminManageFrame extends JFrame {
             kierunekRezerwowaLabel.setText(String.valueOf(rezerwowaNumber));
             kierunekAllLabel.setText(String.valueOf(glownaNumber+rezerwowaNumber));
         });
+
         zgloszeniaButton.addActionListener(e -> {
             JFrame frame = new notifyFrame("Rekrutacja BD2 - Zarządzanie zgłoszeniami", 0);
             setVisible(false);
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
             dispose();
+        });
+
+        zmianaButton.addActionListener(e -> {
+            String query;
+            List<Map<String, Object>> tempList;
+
+            int number = turaComboBox.getSelectedIndex();
+            String tempTura = tura_query.get(number);
+            int tempIndexBeginning = tempTura.indexOf(".");
+            if(tempIndexBeginning != -1) {
+                tempTura = tempTura.substring(tempIndexBeginning+1);
+            }
+;
+            query = "UPDATE tura " +
+                    "SET data_zak = '"+turaZakLabel.getText().strip()+"'," +
+                    "data_rozp = '"+turaRozpLabel.getText().strip()+"'" +
+                    " WHERE " +
+                    "id_tury = '"+tempTura+"'";
+            tempList = Connect.connect(query);
+
+            JOptionPane.showMessageDialog(adminForm, "Edycja tury przebiegła pomyślnie.");
         });
     }
 }
