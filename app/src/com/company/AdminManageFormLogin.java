@@ -28,14 +28,14 @@ public class AdminManageFormLogin extends JFrame {
                 int index = Connect.connect_query_int(query, "id_pracownika");
                 int sum = Connect.connect_query_int("SELECT count(*) as sum FROM pracownik", "sum");
                 if(index != 0 && sum > 0){
-                    JOptionPane.showMessageDialog(adminLogin, "Logowanie przebiegło pomyślnie.");
+                    JOptionPane.showMessageDialog(null, "Logowanie przebiegło pomyślnie.");
                     JFrame frame = new AdminManageFrame("Rekrutacja BD2 - Panel Administratora");
                     setVisible(false);
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(adminLogin, "Logowanie nie powiodło się.");
+                    JOptionPane.showMessageDialog(null, "Logowanie nie powiodło się.");
                 }
                 imieTextField.setText("Imię");
                 nazwiskoTextField.setText("Nazwisko");

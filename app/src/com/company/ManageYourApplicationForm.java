@@ -80,7 +80,9 @@ public class ManageYourApplicationForm extends JFrame {
                 data[row][1] = "null";
                 data[row][2] = "null";
                 data[row][3] = "null";
-                model.fireTableDataChanged();
+                DefaultTableModel model = new DefaultTableModel(data, columns);
+                table1.setModel(model);
+                table1.setDefaultEditor(Object.class, null);
             }
         });
     }

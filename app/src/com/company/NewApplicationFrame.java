@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
 
 public class NewApplicationFrame extends JFrame{
     private JPanel new_application;
@@ -20,9 +21,13 @@ public class NewApplicationFrame extends JFrame{
     private JComboBox comboBox1;
     private JTextField data_urodzeniaTextField;
     private JButton powrótDoMenuButton;
+    private JLabel nowaAplikacjaLabel;
+    private int logged_id;
 
-    public NewApplicationFrame(String str){
+    public NewApplicationFrame(String str, int id){
         super(str);
+        logged_id = id;
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(new_application);
         this.pack();
@@ -30,33 +35,85 @@ public class NewApplicationFrame extends JFrame{
         List<String> countries = Connect.select_countries();
         comboBox1.setModel(new DefaultComboBoxModel<String>(countries.toArray(new String[0])));
 
+        if(logged_id != 0){
+            stwórzAplikacjęNaStudiaButton.setText("Zgłoś błąd w aplikacji");
+            nowaAplikacjaLabel.setText("Przeglądanie aplikacji");
+            String query;
+            List<Map<String, Object>> tempList;
+            query = "SELECT * from kandydat WHERE id_kandydata = '"+logged_id+"'";
+            tempList = Connect.connect(query);
+
+            imieText.setText(String.valueOf(tempList.get(0).get("imie")));
+            nazwiskoText.setText(String.valueOf(tempList.get(0).get("nazwisko")));
+            hasloText.setText(String.valueOf(tempList.get(0).get("haslo")));
+            peselText.setText(String.valueOf(tempList.get(0).get("pesel")));
+            data_urodzeniaTextField.setText(String.valueOf(tempList.get(0).get("data_urodzenia")));
+            int adresindex = (int) tempList.get(0).get("adres");
+            query = "SELECT * from adres WHERE id_adresu = " + adresindex;
+            tempList = Connect.connect(query);
+            kod_pocztowyText.setText(String.valueOf(tempList.get(0).get("kod_pocztowy")));
+            ulicaText.setText(String.valueOf(tempList.get(0).get("ulica")));
+            numer_domuText.setText(String.valueOf(tempList.get(0).get("nr_domu")));
+            numer_mieszkaniaText.setText(String.valueOf(tempList.get(0).get("nr_mieszkania")));
+            int miastoindex = (int) tempList.get(0).get("id_miasta");
+            query = "SELECT * from miasto WHERE id_miasta = " + miastoindex;
+            tempList = Connect.connect(query);
+            miastoText.setText(String.valueOf(tempList.get(0).get("nazwa")));
+            int krajindex = (int) tempList.get(0).get("id_kraju");
+            query = "SELECT nazwa from kraj WHERE id_kraju = " + krajindex;
+            tempList = Connect.connect(query);
+            String krajnazwa = String.valueOf(tempList.get(0).get("nazwa"));
+            comboBox1.setSelectedItem(krajnazwa);
+            comboBox1.updateUI();
+        }
+
         stwórzAplikacjęNaStudiaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String imie = imieText.getText().strip();
-                String nazwisko = nazwiskoText.getText().strip();
-                String pesel =  peselText.getText().strip();
-                String data_urodzenia = data_urodzeniaTextField.getText().strip();
-                String haslo = hasloText.getText();
-                String miasto = miastoText.getText().strip();
-                String kod_pocztowy = kod_pocztowyText.getText().strip();
-                String ulica = ulicaText.getText().strip();
-                int numer_domu = Integer.parseInt(numer_domuText.getText().strip());
-                int numer_mieszkania = 0;
-                if(!numer_mieszkaniaText.getText().isEmpty()){
-                    numer_mieszkania = Integer.parseInt(numer_mieszkaniaText.getText().strip());
+                if(logged_id ==  0) {
+                    String imie = imieText.getText().strip();
+                    String nazwisko = nazwiskoText.getText().strip();
+                    String pesel = peselText.getText().strip();
+                    String data_urodzenia = data_urodzeniaTextField.getText().strip();
+                    String haslo = hasloText.getText();
+                    String miasto = miastoText.getText().strip();
+                    String kod_pocztowy = kod_pocztowyText.getText().strip();
+                    String ulica = ulicaText.getText().strip();
+                    int numer_domu = Integer.parseInt(numer_domuText.getText().strip());
+                    int numer_mieszkania = 0;
+                    if (!numer_mieszkaniaText.getText().isEmpty()) {
+                        numer_mieszkania = Integer.parseInt(numer_mieszkaniaText.getText().strip());
+                    }
+                    String kraj = comboBox1.getSelectedItem().toString();
+                    int idmiasto = addMiasto(miasto, kraj);
+                    int idadres = addAdres(ulica, idmiasto, kod_pocztowy, numer_domu, numer_mieszkania);
+                    int idkandydat = addKandydat(imie, nazwisko, pesel, haslo, data_urodzenia, idadres);
+                    addAplikacja(idkandydat);
+                } else {
+                    String result = (String)JOptionPane.showInputDialog(
+                            new_application,
+                            "Opisz swój błąd",
+                            "Zgłaszanie błędu",
+                            JOptionPane.PLAIN_MESSAGE,
+                            null,
+                            null,
+                            ""
+                    );
+                    if(result != null && result.length() > 0){
+                        String query = "select max(id_zgloszenia) as max from zgloszenie";
+                        int index = Connect.connect_query_int(query,"max");
+                        index++;
+                        query = "INSERT INTO zgloszenie VALUES ("+index+","+logged_id+",'"+result+"')";
+                        Connect.insert(query);
+                        JOptionPane.showMessageDialog(null,"Zgłoszenie zostało przyjęte");
+                    }
                 }
-                String kraj = comboBox1.getSelectedItem().toString();
-                int idmiasto = addMiasto(miasto, kraj);
-                int idadres = addAdres(ulica, idmiasto, kod_pocztowy, numer_domu, numer_mieszkania);
-                int idkandydat = addKandydat(imie, nazwisko, pesel, haslo, data_urodzenia, idadres);
-                addAplikacja(idkandydat);
             }
         });
         powrótDoMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JFrame frame = new MainFrame("Rekrutacja BD2", 0);
+                JFrame frame = new MainFrame("Rekrutacja BD2", logged_id);
                 setVisible(false);
                 frame.setVisible(true);
                 dispose();
@@ -137,12 +194,12 @@ public class NewApplicationFrame extends JFrame{
         index = Connect.connect_query_int(query, "id_aplikacji");
         int sum = Connect.connect_query_int("SELECT count(*) as sum FROM aplikacja", "sum");
         if(index != 0 && sum > 0){
-            JOptionPane.showMessageDialog(this, "Twoja aplikacja nie została utworzona.");
+            JOptionPane.showMessageDialog(null, "Twoja aplikacja nie została utworzona.");
         } else {
             index = sum + 1;
             query = "INSERT INTO aplikacja VALUES(" + index + ",(SELECT date('now')),'N'," + id_kandydata  + ",null,null,null,null,null)";
             Connect.insert(query);
-            JOptionPane.showMessageDialog(this, "Twoja aplikacja została utworzona.\nTeraz możesz przeglądać kierunki.");
+            JOptionPane.showMessageDialog(null, "Twoja aplikacja została utworzona.\nTeraz możesz przeglądać kierunki.");
         }
     }
 }

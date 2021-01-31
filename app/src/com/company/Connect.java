@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Connect {
 
-    //private static String connect_Path = "jdbc:sqlite:C:\\Users\\Jaroslaw\\IBM\\rationalsdp\\workspace\\BD2_20Z_Rekrutacja\\app\\src\\com\\company\\test.db";
     private static String connect_Path = "jdbc:sqlite:app/src/com/company/rekrutacja.db";
 
     public static List<Map<String, Object>> connect(String query) {
@@ -29,22 +28,6 @@ public class Connect {
             ResultSet resultSet = statement.executeQuery(query);
             ResultSetMetaData rsmd = resultSet.getMetaData();
             int columnsNumber = rsmd.getColumnCount();
-
-            //uncomment for verbose checking whether or not the statement works.
-
-            /*
-            while (resultSet.next()) {
-                for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
-                    String columnValue = resultSet.getString(i);
-                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-                }
-                System.out.println("");
-            }
-
-            statement  = conn.createStatement();
-            resultSet = statement.executeQuery(query);
-            rsmd = resultSet.getMetaData();*/
 
             while (resultSet.next()) {
                 row = new HashMap<String, Object>();
