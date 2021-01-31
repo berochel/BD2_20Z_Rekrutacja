@@ -200,3 +200,11 @@ CREATE TABLE wynik_z_przedmiotu (
     FOREIGN KEY ( id_kandydata ) REFERENCES kandydat ( id_kandydata ),
     FOREIGN KEY ( id_przedmiotu ) REFERENCES przedmiot ( id_przedmiotu )
 );
+
+CREATE TABLE zgloszenie (
+    id_zgloszenia NUMBER(5) NOT NULL,
+    id_kandydata NUMBER(7) NOT NULL,
+    opis         VARCHAR2(100) NOT NULL,
+    PRIMARY KEY ( id_zgloszenia ),
+    FOREIGN KEY ( id_kandydata ) REFERENCES kandydat ( id_kandydata )
+);
