@@ -48,9 +48,12 @@ public class ManageYourApplicationForm extends JFrame {
                 int facultyid = Connect.connect_query_int(query, "id_wydzialu");
                 query = "SELECT nazwa FROM wydzial WHERE id_wydzialu = " + facultyid;
                 String faculty = Connect.connect_query_string(query, "nazwa");
+                query = "SELECT liczba_miejsc FROM realizacja WHERE id_kierunku = " + index;
+                int liczbamiejsc = Connect.connect_query_int(query, "liczba_miejsc");
 
                 data[i-1][1] = degree;
                 data[i-1][2] = faculty;
+                data[i-1][3] = liczbamiejsc;
             }
 
         }
