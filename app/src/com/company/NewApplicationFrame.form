@@ -227,7 +227,10 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value="YYYY-MM-DD"/>
+              <toolTipText value="Datę podaj w formacie YYYY-MM-DD"/>
+            </properties>
           </component>
           <component id="f9b05" class="javax.swing.JButton" binding="powrótDoMenuButton" default-binding="true">
             <constraints>
