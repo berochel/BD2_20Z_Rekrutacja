@@ -124,6 +124,10 @@ public class notifyFrame extends JFrame{
                         "id_kandydata = '"+temp_id+"'";
                 tempList = Connect.connect(query);
 
+                query = "DELETE FROM zgloszenie WHERE id_zgloszenia = " + tempZgloszenie;
+                Connect.insert(query);
+                zgloszenieComboBox.updateUI();
+
                 JOptionPane.showMessageDialog(adminNotifyForm, "Edycja danych kandydata przebiegła pomyślnie.");
 
             }
@@ -150,6 +154,10 @@ public class notifyFrame extends JFrame{
                         " WHERE " +
                         "id_kandydata = '"+temp_id+"'";
                 tempList = Connect.connect(query);
+
+                query = "DELETE FROM zgloszenie WHERE id_zgloszenia = " + tempZgloszenie;
+                Connect.insert(query);
+                zgloszenieComboBox.updateUI();
 
                 JOptionPane.showMessageDialog(adminNotifyForm, "Edycja aplikacji przebiegła pomyślnie.");
 
